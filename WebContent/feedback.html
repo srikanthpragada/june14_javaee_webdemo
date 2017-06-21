@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="bright.css" rel="stylesheet"/>
+<title>Feedback</title>
+<script>
+   function validate() 
+   {
+	  var email = document.getElementById("email");   
+	  var emailMessage = document.getElementById("emailMessage");
+	  if (email.value == "")
+      {
+		   emailMessage.innerText = "Please enter valid email address!";
+	       return false;
+      }
+	  else
+		   emailMessage.innerText = "";
+	  
+	  
+   }
+</script>
+</head>
+<body>
+	<h1>Feedback</h1>
+	Please provide your feedback.
+	<p />
+	<hr />
+	<form onsubmit="return validate()"  action="feedback" method="post">
+		Email Address<br /> 
+		<input type="email" name="email" id="email" />
+		<span id="emailMessage" class="error"></span>
+		<p />
+
+		Feedback<br />
+		<textarea  required="required" rows="5" cols="80" name="feedback" id="feedback"></textarea>
+		<p />
+
+		<input type="submit" value="Submit" />
+	</form>
+
+
+
+</body>
+</html>
