@@ -12,6 +12,8 @@
 		Name : <input type="text" name="name" /> <input type="submit"
 			value="Add" />
 	</form>
+	
+	${applicationScope.names}  
 
 	<ul>
 		<%
@@ -33,6 +35,8 @@
 			}
 		%>
 	</ul>
+	
+	
 
 </body>
 </html>

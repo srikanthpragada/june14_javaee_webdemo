@@ -5,18 +5,19 @@
     <welcome-file>intr.html</welcome-file>
     <welcome-file>intr.jsp</welcome-file>
   </welcome-file-list>
-  
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>
   <servlet>
     <servlet-name>hits</servlet-name>
-    <servlet-class>servlets.HitCountServlet</servlet-class>  
+    <servlet-class>servlets.HitCountServlet</servlet-class>
     <init-param>
       <param-name>title</param-name>
       <param-value>Oracle</param-value>
     </init-param>
   </servlet>
-  
   <servlet-mapping>
-     <servlet-name>hits</servlet-name>
-     <url-pattern>/hits</url-pattern>
+    <servlet-name>hits</servlet-name>
+    <url-pattern>/hits</url-pattern>
   </servlet-mapping>
 </web-app>
