@@ -12,9 +12,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter(dispatcherTypes = {DispatcherType.REQUEST },
+/*
+  @WebFilter(dispatcherTypes = {DispatcherType.REQUEST },
            description = "Logs in-coming request", 
            urlPatterns = { "*.jsp" })
+           */
+
 public class LogFilter implements Filter {
 	public void destroy() {
 		// TODO Auto-generated method stub

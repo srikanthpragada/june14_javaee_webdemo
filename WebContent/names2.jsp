@@ -22,6 +22,7 @@
 			   return;  // return from JSP
 		   
 			// add name to list
+			
 			ArrayList<String> namesList = (ArrayList<String>) application.getAttribute("names");
 			if (namesList == null) {
 				namesList = new ArrayList<String>();
