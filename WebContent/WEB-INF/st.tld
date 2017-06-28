@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib version="2.0" 
+    xmlns="http://java.sun.com/xml/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>st</short-name>
+	<uri>http://www.srikanthtechnologies.com/june14</uri>
+	<description>
+		Tags related to database
+	</description>
+	
+	<tag>
+		<name>employees</name>
+		<tag-class>tags.EmployeesTagHandler</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	
+	<tag>
+		<name>employees2</name>
+		<tag-class>tags.Employees2TagHandler</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>dept</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>employees3</name>
+		<tag-class>tags.Employees3TagHandler</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+	
+	
+</taglib>	
