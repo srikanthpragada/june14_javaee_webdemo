@@ -9,17 +9,20 @@
 </head>
 <body>
 
+ <select>
+   <st:employees3 minSalary ="10000">
+      <option value="${id}">${name}</option>
+   </st:employees3>
+  </select>
+  
+
   <ul>
-   <st:employees3>
+   <st:employees3  minSalary="10000">
       <li>${name}, ${salary} </li>
    </st:employees3>
   </ul>
   
-  
-   <st:employees3>
-      ${name}, ${salary} <p/>
-   </st:employees3>
-  
+ 
   
   
   

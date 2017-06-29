@@ -33,6 +33,11 @@
 		<name>employees3</name>
 		<tag-class>tags.Employees3TagHandler</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<name>minSalary</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	
 	
