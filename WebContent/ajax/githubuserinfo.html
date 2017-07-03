@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>GitHub User Details </title>
+        <script type ="text/javascript">
+            var xmlHttp;
+            function create(){
+               xmlHttp = new XMLHttpRequest();
+            } // end of create
+
+            function getUserDetails() {
+                username = document.getElementById("username").value;
+                url="https://api.github.com/users/" + username;
+                xmlHttp.open("GET",url,true);
+                xmlHttp.onreadystatechange=doUpdate;
+                xmlHttp.send(null); // make request
+            }
+
+            function doUpdate() {
+                if (xmlHttp.readyState === 4 
+                         && xmlHttp.status === 200)
+                {
+                    var msg = document.getElementById("msg");
+                    var fullname = document.getElementById("fullname");
+                    var location = document.getElementById("location");
+                    
+                    var  data = xmlHttp.responseText;
+                    // Create JavaScript Object from JSON 
+                    var  details = eval( "(" + data + ")"); 
+                    fullname.value = details.name;
+                    location.value = details.location;
+                } 
+                else
+                	{
+                	 alert("Sorry! User not found!");
+                	
+                	}
+            }
+            
+        </script>
+    </head>
+    <body onload="create()">
+        <form id="form1">
+            <h2>GitHub User Details</h2>
+            <table>
+                <tr>
+                    <td>Username : </td>
+                    <td><input type="text" id="username" size="20"/> 
+                        <input type="button"  value="Get Details"
+                               onclick="getUserDetails()" />
+                        <span id="msg" style="color:red" /> </td>
+                </tr>
+                <tr>
+                    <td>Full Name : </td>
+                    <td><input type="text" id="fullname" readonly size="30"/></td>
+                </tr>
+                <tr>
+                    <td>Location  :  </td>
+                    <td><input type="text" id="location" readonly size="30"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

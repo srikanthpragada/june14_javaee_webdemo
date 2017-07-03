@@ -1,0 +1,48 @@
+<html>
+<script type="text/javascript">
+	var xhr = new XMLHttpRequest();
+
+	function updateTotal() {
+		var num1 = document.getElementById("num1");
+		var num2 = document.getElementById("num2");
+		url = "add.jsp?num1=" + num1.value + "&num2=" + num2.value;
+		xhr.open("GET", url, true); // async
+		xhr.onreadystatechange = doUpdate; // resgister callback
+		xhr.send(null); // make request
+	}
+	// call back function
+	function doUpdate() {
+		if (xhr.readyState === 4) // response has been received
+			if (xhr.status === 200) { //  ok
+				var res = document.getElementById("result");
+				res.value = xhr.responseText;
+			} else
+				alert(xhr.statusText);
+	}
+</script>
+<body>
+	<form>
+		<img src="munnar.jpg">
+		<p />
+		<img src="lakeview.jpg">
+		<p />
+		<h2>Using AJAX to Add Numbers</h2>
+		<table>
+			<tr>
+				<td>First Number :</td>
+				<td><input type="text" id="num1"></td>
+			</tr>
+			<tr>
+				<td>Second Number :</td>
+				<td><input type="text" id="num2"></td>
+			</tr>
+			<tr>
+				<td>Result:</td>
+				<td><input type="text" readonly id="result"></td>
+			</tr>
+		</table>
+		<br /> <input type="button" onclick="updateTotal()"
+			value="Add Numbers" /> <input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

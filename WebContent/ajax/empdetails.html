@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>AJAX and XML</title>
+</head>
+<body>
+	<form id="form1">
+		<h2>Employee Details</h2>
+		<table>
+			<tr>
+				<td>Employee ID :</td>
+				<td><input type="text" onblur="getEmployeeDetails()" id="empid"
+					size="10" /> <input type="button" onclick="getEmployeeDetails()"
+					value="Get Details" />
+			</tr>
+			<tr>
+				<td>Employee Name :</td>
+				<td><input type="text" id="empname" readonly size="30" /></td>
+			</tr>
+			<tr>
+				<td>Salary :</td>
+				<td><input type="text" id="empsal" readonly size="30" /></td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+		var xhr = new XMLHttpRequest();
+		var empname = document.getElementById("empname");
+		var empsal = document.getElementById("empsal");
+		var empid = document.getElementById("empid");
+
+		function getEmployeeDetails() {
+			empname.value = "";
+			empsal.value = "";
+			url = "empdetails.jsp?empid=" + empid.value;
+			xhr.open("GET", url, true);
+			xhr.onreadystatechange = doUpdate;
+			xhr.send(null); // make request
+		}
+
+		function doUpdate() {
+			if (xhr.readyState === 4)
+				if (xhr.status === 200) {
+					var root = xhr.responseXML.documentElement;
+					// if employee id not found
+					if (root.nodeName === "error") {
+						alert(root.childNodes[0].nodeValue);
+					} else { // id found and data is sent
+						var empdetails = root.childNodes;
+						name = empdetails.item(0).childNodes[0].nodeValue;
+						salary = empdetails.item(1).childNodes[0].nodeValue;
+						empname.value = name;
+						empsal.value = salary;
+					}
+				} // if
+				else
+					alert("Sorry! Could not process your request");
+		}
+	</script>
+
+</body>
+
+
+</html>

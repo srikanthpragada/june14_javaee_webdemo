@@ -1,0 +1,52 @@
+<html>
+ <head>
+  <title>Jobs and Employees</title>
+  <script type="text/javascript" src="../jquery-1.11.1.js"></script>
+  <script type="text/javascript" language="javascript">
+   // this is done when page is loaded  (document ready)
+   $(
+     function() {
+       $.getJSON("jobs.jsp",{},displayJobs);
+     }
+   );
+ 
+   function displayJobs(data) {
+       $.each(data, function(index,job){
+       // add items to List box
+       $("#jobs").append("<option value='" + job.id + "'>"
+                + job.title + "</option>");
+       }
+       );
+   }
+   function getEmployees() {
+      $("#employees").contents().remove(); // clear options
+      $.getJSON("employees.jsp",
+          {jobid:$("#jobs").val()}, 
+          displayEmployees);
+   }
+   function displayEmployees(data) {
+      $.each(data, function(index,emp){
+       // add items to List box
+       $("#employees").append("<option>" + emp.fullname + "</option>");
+       } // end of function
+      ); // each
+    }
+   </script>
+</head>
+<body>
+  <h2>Jobs and Employees</h2>
+  <table>
+   <tr>
+     <td valign="top" width="200px"> <h3>Jobs </h3>
+     <select id="jobs" size="10" 
+           ondblclick="getEmployees()"></select><p/>
+     <b>Double click on Job to get Employees of that Job.</b>
+     </td>
+     <td valign ="top" width="200px">
+      <h3>Employees </h3>
+      <select id="employees" size="10" 
+               style="width:200px"></select></td> </tr>
+  </table>
+ </body>
+</html>
+

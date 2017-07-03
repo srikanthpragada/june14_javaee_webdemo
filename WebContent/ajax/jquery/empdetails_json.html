@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>AJAX and JSON with JQUERY </title>
+        <script src="jquery-3.1.0.js"></script>
+        <script>
+            function getEmployeeDetails() {
+                $.getJSON("../empdetails_json.jsp",
+                        {empid: $("#empid").val()},
+                        displayResult);
+            }
+
+            function displayResult(data) {
+                if (data.error) // if error property is present 
+                {
+                    $("#empname").val("");
+                    $("#empsal").val("");
+                    alert(data.error);
+                }
+                else
+                {
+                    $("#empname").val(data.name);
+                    $("#empsal").val(data.salary);
+                }
+            }
+        </script>
+    </head>
+    <body>
+            <h2>Employee Details</h2>
+            <table>
+                <tr>
+                    <td>Employee ID : </td>
+                    <td><input type="text" id="empid" size="10"/> <input type="button"  value="Get Details" onclick="getEmployeeDetails()" /> </td>
+                </tr>
+                <tr>
+                    <td>Employe Name : </td>
+                    <td><input type="text" id="empname" readonly size="30"/></td>
+                </tr>
+                <tr>
+                    <td>Salary :  </td>
+                    <td><input type="text" id="empsal" readonly size="30"/></td>
+                </tr>
+            </table>
+    </body>
+</html>

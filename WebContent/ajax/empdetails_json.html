@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>AJAX and JSON </title>
+        <script type ="text/javascript">
+            var xmlHttp = new XMLHttpRequest();
+
+            function getEmployeeDetails() {
+                empid = document.getElementById("empid").value;
+                url="empdetails_json.jsp?empid=" + empid;
+                xmlHttp.open("GET",url,true);
+                xmlHttp.onreadystatechange=doUpdate;
+                xmlHttp.send(null); // make request
+            }
+
+            function doUpdate() {
+                if (xmlHttp.readyState === 4 
+                         && xmlHttp.status === 200) {
+                    var msg = document.getElementById("msg");
+                    var empname = document.getElementById("empname");
+                    var empsal = document.getElementById("empsal");
+                    
+                    var  data = xmlHttp.responseText;
+                    // Create JavaScript Object from JSON 
+                    var  details = eval( "(" + data + ")"); 
+                    if ( details.error) {  // employee id not found
+                        empname.value = "";
+                        empsal.value = "";
+                        msg.innerHTML = details.error;
+                    }
+                    else {  // employee found
+                        msg.innerHTML = "";
+                        empname.value = details.name;
+                        empsal.value = details.salary;
+                    }
+                } 
+            }
+        </script>
+    </head>
+    <body onload="create()">
+        <form id="form1">
+            <h2>Employee Details</h2>
+            <table>
+                <tr>
+                    <td>Employee ID : </td>
+                    <td><input type="text" id="empid" size="10"/> 
+                        <input type="button"  value="Get Details"
+                               onclick="getEmployeeDetails()" />
+                        <span id="msg" style="color:red" /> </td>
+                </tr>
+                <tr>
+                    <td>Employe Name : </td>
+                    <td><input type="text" id="empname" readonly size="30"/></td>
+                </tr>
+                <tr>
+                    <td>Salary :  </td>
+                    <td><input type="text" id="empsal" readonly size="30"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

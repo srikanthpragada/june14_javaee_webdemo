@@ -12,7 +12,8 @@
 <body>
 
 <form action="empbydept.jsp">
-   Department Id : <input type="number" name="dept" value="${param.dept}" />
+   Department Id : <input type="text" name="dept" 
+                          value="${param.dept}" />
    <input type="submit" value="Employees" />
 </form>
 
