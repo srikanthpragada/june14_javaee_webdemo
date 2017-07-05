@@ -5,7 +5,7 @@
     rs.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
     rs.setUsername("hr");
     rs.setPassword("hr");
-    rs.setCommand("select * from jobs");
+    rs.setCommand("select * from jobs where job_id in (select job_id from employees)");
     rs.execute();
 
     JsonArrayBuilder jobs = Json.createArrayBuilder();

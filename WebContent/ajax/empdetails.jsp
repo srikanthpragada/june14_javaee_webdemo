@@ -1,6 +1,6 @@
 <%@ page import="java.sql.*"  contentType="text/xml"%>
 <%
-    // Thread.sleep(5000);
+    Thread.sleep(5000);
     String empid = request.getParameter("empid");
     // connect to oracle using thin driver
     Class.forName("oracle.jdbc.driver.OracleDriver");

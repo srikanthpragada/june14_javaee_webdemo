@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>webdemo</display-name>
-  <welcome-file-list>
-    <welcome-file>intr.html</welcome-file>
-    <welcome-file>intr.jsp</welcome-file>
-  </welcome-file-list>
-  <session-config>
-    <session-timeout>5</session-timeout>
-  </session-config>
-  <servlet>
-    <servlet-name>hits</servlet-name>
-    <servlet-class>servlets.HitCountServlet</servlet-class>
-    <init-param>
-      <param-name>title</param-name>
-      <param-value>Oracle</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>hits</servlet-name>
-    <url-pattern>/hits</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>webdemo</display-name>
+	<welcome-file-list>
+		<welcome-file>intr.html</welcome-file>
+		<welcome-file>intr.jsp</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>5</session-timeout>
+	</session-config>
+
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>metro</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>metro</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
 </web-app>

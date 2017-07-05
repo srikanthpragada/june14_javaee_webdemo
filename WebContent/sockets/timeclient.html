@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time Client</title>
+        <script type="text/javascript">
+            var wsocket;
+            var output;
+            function connect() {
+                //alert("Connecting...");       
+                output = document.getElementById("output");        
+                wsocket = new WebSocket("ws://localhost:8888/webdemo/time");
+                wsocket.onmessage = showMessage;
+            }
+            function showMessage(evt) {
+                var data = evt.data;
+                output.innerHTML = data;
+            }
+            window.addEventListener("load", connect, false);
+            
+        </script>
+    </head>
+    <body>
+        <h2>Current Date & Time</h2>        
+        <div id="output"></div>
+    </body>
+</html>

@@ -1,8 +1,8 @@
 <html>
  <head>
   <title>Jobs and Employees</title>
-  <script type="text/javascript" src="../jquery-1.11.1.js"></script>
-  <script type="text/javascript" language="javascript">
+  <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+  <script>
    // this is done when page is loaded  (document ready)
    $(
      function() {
@@ -11,7 +11,7 @@
    );
  
    function displayJobs(data) {
-       $.each(data, function(index,job){
+       $.each(data, function(index,job) {
        // add items to List box
        $("#jobs").append("<option value='" + job.id + "'>"
                 + job.title + "</option>");

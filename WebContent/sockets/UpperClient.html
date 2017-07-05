@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script type="text/javascript">
+
+            var wsocket;
+            var inputText;
+            var outputText;
+            function connect() {
+                wsocket = new WebSocket("ws://localhost:8888/webdemo/upper");
+                wsocket.onmessage = showResult;
+                // alert("connected to server");
+                inputText = document.getElementById("inputText");
+                outputText = document.getElementById("outputText");
+            }
+            function showResult(evt) {
+                outputText.innerHTML = evt.data;
+            }
+            
+            window.addEventListener("load", connect, false);
+            
+            function sendText(){
+               wsocket.send( inputText.value);                   
+            }
+        </script>
+    </head>
+    <body>
+        Enter Text : <input type="text" id="inputText" size="20"/>
+        <p/>
+        <input type="button" value="Send" onclick="sendText()"/>
+        <p/>
+        <div id="outputText"></div>
+    </body>
+</html>
