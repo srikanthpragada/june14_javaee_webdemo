@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Hello Client</title>
+<script src="../ajax/jquery/jquery-3.2.1.js"></script>
+<script>
+ function getMessage() 
+ {
+	 $.get("http://localhost:8888/webdemo/rest/hello",{}, showResult);
+ }
+ 
+ function showResult(message) {
+	 $("#message").html(message);
+ }
+</script>
+</head>
+
+<body>
+
+<button onclick="getMessage()">Get Message </button>
+<h2 id="message"></h2>
+
+</body>
+</html>

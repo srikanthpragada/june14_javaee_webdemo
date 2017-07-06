@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Hello Client</title>
+<script src="../ajax/jquery/jquery-3.2.1.js"></script>
+<script>
+ function getJobs() 
+ {
+	 $.getJSON("http://localhost:8888/webdemo/rest/jobs",{}, showResult);
+ }
+ 
+ function showResult(jobs) {
+	 $("#jobs").text("");
+	 $.each(jobs, 
+			function(idx, job) {
+		        $("#jobs").append("<li>" + job.title + "</li>");
+	        }
+	 );
+ }
+ 
+ function getJob() 
+ {
+	 $.getJSON("http://localhost:8888/webdemo/rest/jobs/" + $("#jobid").val()
+			    ,{}, showTitle);
+ }
+ 
+ function showTitle(job) {
+      $("#title").text(job.title);
+ }
+ 
+</script>
+</head>
+
+<body>
+<input type="text" placeholder="Job ID" id="jobid" onblur="getJob()"/>
+<span id="title"></span>
+
+<p/>
+<button onclick="getJobs()">Get Jobs</button>
+<ul id="jobs">
+
+</ul>
+
+</body>
+</html>
