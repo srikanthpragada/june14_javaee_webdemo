@@ -2,45 +2,108 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Hello Client</title>
+<title>Jobs Client</title>
 <script src="../ajax/jquery/jquery-3.2.1.js"></script>
 <script>
- function getJobs() 
- {
-	 $.getJSON("http://localhost:8888/webdemo/rest/jobs",{}, showResult);
- }
- 
- function showResult(jobs) {
-	 $("#jobs").text("");
-	 $.each(jobs, 
-			function(idx, job) {
-		        $("#jobs").append("<li>" + job.title + "</li>");
-	        }
-	 );
- }
- 
- function getJob() 
- {
-	 $.getJSON("http://localhost:8888/webdemo/rest/jobs/" + $("#jobid").val()
-			    ,{}, showTitle);
- }
- 
- function showTitle(job) {
-      $("#title").text(job.title);
- }
- 
+	function getJobs() {
+		$.getJSON("http://localhost:8888/webdemo/rest/jobs", {}, showResult);
+	}
+
+	function showResult(jobs) {
+		$("#jobs").text("");
+		$.each(jobs, function(idx, job) {
+			$("#jobs").append("<li>" + job.title + "</li>");
+		});
+	}
+
+	function getJob() {
+		$.ajax(
+          {
+			url : "http://localhost:8888/webdemo/rest/jobs/"
+					+ $("#jobid").val(),
+		    dataType : 'json',			
+			success : showTitle,
+		  	error : showError
+ 		  }
+		);
+	}
+
+	function showTitle(job) {
+		$("#title").val(job.title);
+		$("#titleError").text("");
+	}
+	
+	function showError() {
+		$("#title").val("");
+		$("#titleError").text("Sorry! Job Id Not Found!");
+	}
+	
+	function showDeleted() {
+		alert("Job has been deleted!");
+	}
+	
+	function showDeleteError(xhr) {
+		console.log(xhr);
+		if ( xhr.status == 404)
+		    alert("Sorry! Could not delete as job id not found!");
+		else
+			alert("Sorry! Could not delete job!");
+	}
+	
+	function deleteJob() {
+		$.ajax(
+          {
+			url : "http://localhost:8888/webdemo/rest/jobs/"
+					+ $("#jobid").val(),
+		    method : 'delete',			
+			success : showDeleted,
+		  	error : showDeleteError
+ 		  }
+		);
+	}
+	
+	function updateJob() {
+		$.ajax(
+          {
+			url : "http://localhost:8888/webdemo/rest/jobs/"
+					+ $("#jobid").val(),
+            data : {title : $("#title").val()},					
+		    method : 'put',			
+			success : showUpdated,
+		  	error : showUpdateError
+ 		  }
+		);
+	}
+	
+	function showUpdated() {
+		alert("Job has been updated!");
+	}
+	
+	function showUpdateError(xhr) {
+		console.log(xhr);
+		if ( xhr.status == 404)
+		    alert("Sorry! Could not update as job id not found!");
+		else
+			alert("Sorry! Could not update job!");
+	}
+	
+	
 </script>
 </head>
 
 <body>
-<input type="text" placeholder="Job ID" id="jobid" onblur="getJob()"/>
-<span id="title"></span>
+	<input type="text" placeholder="Job ID" id="jobid" onblur="getJob()" />
+	<input type="text" id="title" />
+	<span id="titleError"></span>
+	<p></p>
+	<button onclick="updateJob()">Update</button>
+	<button onclick="deleteJob()">Delete </button>
 
-<p/>
-<button onclick="getJobs()">Get Jobs</button>
-<ul id="jobs">
+	<p />
+	<button onclick="getJobs()">Get Jobs</button>
+	<ul id="jobs">
 
-</ul>
+	</ul>
 
 </body>
 </html>
