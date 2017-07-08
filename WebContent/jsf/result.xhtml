@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:form id="marksForm">
+	<h1>Results</h1>
+    Marks : 
+    <h:inputText  id="marks" value="#{marksBean.marks}" validatorMessage="Invalid Marks. Must be between 1 and 100">
+        <f:validateLongRange minimum="0" maximum="100" />
+    </h:inputText>
+    <h:message for="marks"></h:message>
+	<p />
+	<h:commandButton value="Get Grade" 
+	    actionListener="#{marksBean.process}"></h:commandButton>
+	<p />
+	<h3>
+		<h:outputText value="#{marksBean.result}"></h:outputText>
+	</h3>
+
+</h:form>
+
+</html>

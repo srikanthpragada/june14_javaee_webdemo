@@ -11,12 +11,22 @@
 	<session-config>
 		<session-timeout>5</session-timeout>
 	</session-config>
-	
-	
 
 	<listener>
 		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
 	</listener>
+	
+	<servlet>
+		<servlet-name>jsf</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jsf</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	
 
 	<servlet>
 		<servlet-name>metro</servlet-name>
