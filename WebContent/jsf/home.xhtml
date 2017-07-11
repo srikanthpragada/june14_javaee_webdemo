@@ -6,12 +6,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
-  	
-  <f:view locale="#{facesContext.externalContext.request.locale}">
-    <f:loadBundle basename="messages" var="msgs"/>
-    <h1> #{msgs.wish}</h1>
-    
-  </f:view>	
+  <h1>Welcome</h1>
+  #{sessionScope.username}
+  
   
  
 

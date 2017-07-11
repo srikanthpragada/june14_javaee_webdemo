@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+  <script src="../ajax/jquery/jquery-3.2.1.js"></script>
+  <script>
+     function convert()
+     {
+    	 var value = $("#username").val()
+    	 $("#username").val(value.toLowerCase()); 
+     }
+  </script>
+  
+</head>	
+
+<h:form id="loginForm" prependId="false">
+	<h1>Login</h1>
+    Username : <br/>
+    <h:inputText  id="username" value="#{loginBean.username}">
+    </h:inputText>
+    <h:message for="username"></h:message>
+	<p />
+	Password : <br/>
+    <h:inputSecret id="password" value="#{loginBean.password}">
+    </h:inputSecret>
+    <h:message for="password"></h:message>
+	<p />
+	<h:commandButton value="Login" 
+	    action="#{loginBean.login}"></h:commandButton>
+    <button type="button" onclick="convert()">Covert</button>
+    	    
+	<p />
+	
+	<h3>
+		<h:outputText value="#{loginBean.message}"></h:outputText>
+	</h3>
+
+</h:form>
+
+</html>

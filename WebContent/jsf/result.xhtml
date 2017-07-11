@@ -9,7 +9,9 @@
 <h:form id="marksForm">
 	<h1>Results</h1>
     Marks : 
-    <h:inputText  id="marks" value="#{marksBean.marks}" validatorMessage="Invalid Marks. Must be between 1 and 100">
+    <h:inputText   id="marks" value="#{marksBean.marks}"
+         valueChangeListener="#{marksBean.valueChanged}"
+         validatorMessage="Invalid Marks. Must be between 1 and 100">
         <f:validateLongRange minimum="0" maximum="100" />
     </h:inputText>
     <h:message for="marks"></h:message>

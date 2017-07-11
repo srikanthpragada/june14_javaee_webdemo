@@ -5,14 +5,19 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
-  	
-  <f:view locale="#{facesContext.externalContext.request.locale}">
-    <f:loadBundle basename="messages" var="msgs"/>
-    <h1> #{msgs.wish}</h1>
+	 
+ <body>  	
+   <h1>List Of Jobs</h1>
+   <h:dataTable value="#{jobsBean.jobs}" var="job">
+     
+     <h:column>
+         #{job.job_id}
+     </h:column>
+     
+     <h:column>
+         #{job.job_title}
+     </h:column>
     
-  </f:view>	
-  
- 
-
+   </h:dataTable>
+ </body>
 </html>
