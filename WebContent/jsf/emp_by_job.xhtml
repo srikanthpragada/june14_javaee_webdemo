@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>  
+    
+</head>	 
+ <body>  	
+   <h1>Employees By Job</h1>
+   <h:form>
+      <h:selectOneMenu value="#{jobsBean.job}">
+         <f:selectItem itemValue="p"  itemLabel="Programmer"></f:selectItem>
+         <f:selectItem itemValue="a"  itemLabel="Admin"></f:selectItem>
+      </h:selectOneMenu>
+      <p></p>
+      
+       <h:selectOneMenu value="#{jobsBean.job}">
+         <f:selectItems value="#{jobsBean.jobsOptions}"/> 
+      </h:selectOneMenu>
+      <p></p>
+      <h:commandButton value="Submit"></h:commandButton>
+   </h:form>   
+
+ </body>
+</html>

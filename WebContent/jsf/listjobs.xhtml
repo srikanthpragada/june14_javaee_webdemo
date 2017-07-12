@@ -5,17 +5,28 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	 
+<head>  
+   <style>
+     .colhead { background-color:blue;color:white;}
+   </style>
+</head>	 
  <body>  	
    <h1>List Of Jobs</h1>
-   <h:dataTable value="#{jobsBean.jobs}" var="job">
+   <h:dataTable value="#{jobsBean.jobs}" var="job" headerClass="colhead">
      
      <h:column>
+         <f:facet name="header">Job Id</f:facet>
          #{job.job_id}
      </h:column>
      
      <h:column>
+         <f:facet name="header">Job Title</f:facet>
          #{job.job_title}
+     </h:column>
+     
+     <h:column>
+         <f:facet name="header">Max Salary</f:facet>
+         #{job.max_salary}
      </h:column>
     
    </h:dataTable>

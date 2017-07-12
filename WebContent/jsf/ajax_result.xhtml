@@ -3,25 +3,28 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+</h:head>	
 
 <h:form id="marksForm">
 	<h1>Results</h1>
     Marks : 
-    <h:inputText  p:type="number" p:min="0" p:max="100" id="marks" value="#{marksBean.marks}"
+    <h:inputText   id="marks" value="#{marksBean.marks}"
          valueChangeListener="#{marksBean.valueChanged}"
          validatorMessage="Invalid Marks. Must be between 1 and 100">
         <f:validateLongRange minimum="0" maximum="100" />
     </h:inputText>
     <h:message for="marks"></h:message>
 	<p />
-	<h:commandButton value="Get Grade" 
-	    actionListener="#{marksBean.process}"></h:commandButton>
+	<h:commandButton value="Get Grade" actionListener="#{marksBean.process}">
+	     <f:ajax execute="marks" render="result" />
+	</h:commandButton>
 	<p />
 	<h3>
-		<h:outputText value="#{marksBean.result}"></h:outputText>
+		<h:outputText id="result" value="#{marksBean.result}"></h:outputText>
 	</h3>
 
 </h:form>
