@@ -14,20 +14,17 @@
  <body>  	
    <h1>List Of Jobs</h1>
    <ul>
-   <ui:repeat offset="1" size="5"    value="#{jobsBean.allJobs}" var="job">
+   <ui:repeat offset="1" size="5" value="#{jobsBean.allJobs}" var="job">
           <li>#{job.title}</li>     
    </ui:repeat>
    </ul>
    
    <ul>
    <ui:repeat  value="#{jobsBean.allJobs}" varStatus="stat" var="job">
-          <h:panelGrid width="100%" rendered="#{stat.first}"  >
-             <hr/>
-          </h:panelGrid>
+          <h:outputText rendered="#{stat.first}" 
+                        value="&lt;hr&gt;" escape="false"/>
           <li>#{stat.index + 1} - #{job.title}</li>
-          <h:panelGrid width="100%" rendered="#{stat.last}"  >
-             <hr/>
-          </h:panelGrid>     
+          <ui:fragment rendered="#{stat.last}"> <hr/> </ui:fragment>     
           
    </ui:repeat>
    </ul>

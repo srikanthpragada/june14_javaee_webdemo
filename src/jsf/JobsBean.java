@@ -61,6 +61,22 @@ public class JobsBean {
 			return null;
 		}
 	}
+	
+	public RowSet getEmployees() {
+		try {
+			CachedRowSet crs = new OracleCachedRowSet();
+			crs.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+			crs.setUsername("hr");
+			crs.setPassword("hr");
+			crs.setCommand("select * from employees where job_id = ?");
+			crs.setString(1, job);
+			crs.execute();
+			return crs;
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
 
 	public List<Job> getAllJobs() {
 		try (CachedRowSet crs = new OracleCachedRowSet()) {

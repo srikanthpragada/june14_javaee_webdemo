@@ -6,24 +6,33 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>  
-    
-</head>	 
- <body>  	
-   <h1>Employees By Job</h1>
-   <h:form>
-      <h:selectOneMenu value="#{jobsBean.job}">
-         <f:selectItem itemValue="p"  itemLabel="Programmer"></f:selectItem>
-         <f:selectItem itemValue="a"  itemLabel="Admin"></f:selectItem>
-      </h:selectOneMenu>
-      <p></p>
-      
-       <h:selectOneMenu value="#{jobsBean.job}">
-         <f:selectItems value="#{jobsBean.jobsOptions}"/> 
-      </h:selectOneMenu>
-      <p></p>
-      <h:commandButton value="Submit"></h:commandButton>
-   </h:form>   
+<head>
 
- </body>
+</head>
+<body>
+	<h1>Employees By Job</h1>
+	<h:form>
+       Select Job : 
+        <h:selectOneMenu value="#{jobsBean.job}"  onchange="submit()">
+			<f:selectItems value="#{jobsBean.jobsOptions}" />
+		</h:selectOneMenu>
+		<p />
+		
+		<h:dataTable rendered="#{jobsBean.job != null}" 
+		             value="#{jobsBean.employees}"
+		             var="emp">
+  		  <h:column>
+				<f:facet name="header">Name</f:facet>
+                       #{emp.first_name}
+           </h:column> 
+           
+           <h:column>
+				<f:facet name="header">Salary</f:facet>
+                       #{emp.salary}
+           </h:column>
+
+		</h:dataTable>
+	</h:form>
+
+</body>
 </html>

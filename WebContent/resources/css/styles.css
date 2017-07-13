@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.header {
+	background-color:red;
+	color:white;
+	font-family : arial;
+	font-size : 20pt;
+	font-weight : bold;
+}
+
+.menu {
+	background-color: #dddddd;
+	font-family : arial;
+	font-size : 12pt;
+	font-weight : bold;
+}
+
